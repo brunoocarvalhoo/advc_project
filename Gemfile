@@ -36,6 +36,9 @@ gem "redis", "~> 4.0"
 #Gem devise
 gem "devise", "~> 4.9"
 
+#Gem Devise i18n
+gem 'devise-i18n'
+
 #Bootsrap
 gem 'bootstrap', '5.3.1'
 
