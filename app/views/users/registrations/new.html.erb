@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="br" data-bs-theme="auto">
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/stylesheets/sign-in.css">
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,75 +14,6 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 
-  <style>
-      .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          user-select: none;
-      }
-
-      @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-              font-size: 3.5rem;
-          }
-      }
-
-      .b-example-divider {
-          width: 100%;
-          height: 3rem;
-          background-color: rgba(0, 0, 0, .1);
-          border: solid rgba(0, 0, 0, .15);
-          border-width: 1px 0;
-          box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-          flex-shrink: 0;
-          width: 1.5rem;
-          height: 100vh;
-      }
-
-      .bi {
-          vertical-align: -.125em;
-          fill: currentColor;
-      }
-
-      .nav-scroller {
-          position: relative;
-          z-index: 2;
-          height: 2.75rem;
-          overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-          display: flex;
-          flex-wrap: nowrap;
-          padding-bottom: 1rem;
-          margin-top: -1px;
-          overflow-x: auto;
-          text-align: center;
-          white-space: nowrap;
-          -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-          --bd-violet-bg: #712cf9;
-          --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-          --bs-btn-font-weight: 600;
-          --bs-btn-color: var(--bs-white);
-          --bs-btn-bg: var(--bd-violet-bg);
-          --bs-btn-border-color: var(--bd-violet-bg);
-          --bs-btn-hover-color: var(--bs-white);
-          --bs-btn-hover-bg: #6528e0;
-          --bs-btn-hover-border-color: #6528e0;
-          --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-          --bs-btn-active-color: var(--bs-btn-hover-color);
-          --bs-btn-active-bg: #5a23c8;
-          --bs-btn-active-border-color: #5a23c8;
-      }
-  </style>
 </head>
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
@@ -156,56 +85,33 @@
 <main class="form-signin w-100 m-auto">
   <%= image_tag asset_path('advc.png'), class: 'mb-4', alt: 'Logo da ADVC', width: 100, height: 100 %>
   <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="form-floating">
-    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-    <label for="floatingInput">Email address</label>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
   </div>
-  <div class="form-floating">
-    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-    <label for="floatingPassword">Password</label>
+
+  <div class="field">
+    <%= f.label :password, 'Senha' %>
+    <% if @minimum_password_length %>
+      <em>(<%= "mínimo #{@minimum_password_length} caractéres" %>)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
-  <div class="form-floating">
-    <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password">
-    <label for="floatingPasswordConfirm">Confirm Password</label>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'Confirme sua senha' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-  <%= link_to("Sign Up", new_user_registration_path(resource_name), class: "btn btn-primary w-100 py-2") %>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class: "btn btn-primary w-100 py-2" %>
+  </div>
+<% end %>
   <p class="mt-5 mb-3 text-body-secondary">&copy; 2022–2023</p>
 </main>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-<!--<h2>Sign up</h2>-->
-
-<%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%#= render "users/shared/error_messages", resource: resource %>
-
-<!--  <div class="field">-->
-<!--    <%#= f.label :email %><br />-->
-    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= f.label :password %>
-    <%# if @minimum_password_length %>
-<!--    <em>(<%#= @minimum_password_length %> characters minimum)</em>-->
-<!--    <%# end %><br />-->
-    <%#= f.password_field :password, autocomplete: "new-password" %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-<!--    <%#= f.label :password_confirmation %><br />-->
-    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
-<!--  </div>-->
-
-<!--  <div class="actions">-->
-    <%#= f.submit "Sign up" %>
-<!--  </div>-->
-<%# end %>
-
-<%#= render "users/shared/links" %>
