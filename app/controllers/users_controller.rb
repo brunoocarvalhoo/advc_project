@@ -10,14 +10,18 @@ class UsersController < ApplicationController
     users = User.where(id: params[:format])
 
     users.each do |user|
-      next if params[:user][:email].blank? && params[:user][:admin].blank?
+      next if user_params[:email].blank? && user_params[:admin].blank?
 
-      user.update(email: params[:user][:email], admin: params[:user][:admin])
+      user.update(user_params)
 
       user.save!
     end
 
-    redirect_to '/users/users_manager'
+    if current_user.admin?
+      redirect_to '/users/users_manager'
+    else
+      redirect_to '/'
+    end
   end
 
   def users_manager
@@ -27,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:id, :email, :admin)
+    params[:user].permit(:id, :email, :admin)
   end
 end
 
