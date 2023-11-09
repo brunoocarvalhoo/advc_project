@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.118.2">
+
+
+<main style="margin-top: 80px">
+</main>
+<button class="btn btn-primary" id="newModalId">Novo Evento</button>
+<body class="carousel">
+<div class="table">
+  <table>
+    <thead>
+    <tr>
+      <th> Título</th>
+      <th> Descrição</th>
+      <th> Dia da Semana</th>
+      <th> Horário</th>
+      <th> Categoria</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @events.map do |event| %>
+      <tr>
+        <td> <%= event.title %> </td>
+        <td> <%= event.description %> </td>
+        <td> <%= event.week_date %> </td>
+        <td> <%= event.hour %> </td>
+        <td> <%= event.team %> </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div id="myModal" class="modal">
+  <div class="modal-content" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-bottom-0">
+        <h1 class="modal-title fs-5">Modal title</h1>
+        <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-0">
+        <%= form_for(Event.new, as: :event, url: new_event_path(:event)) do |f| %>
+
+          <div class="field">
+            <%= f.label :title, 'Título' %><br/>
+            <%= f.text_field :title, autofocus: true, autocomplete: "title", class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :description, 'Descrição' %>
+            <%= f.text_field :description %>
+          </div>
+
+          <div class="field">
+            <%= f.label :week_date, 'Dia da Semana' %>
+            <%= f.select :week_date, [['Segunda', 'Segunda'], ['Terça', 'Terça'], ['Quarta', 'Quarta'], ['Quinta', 'Quinta'], ['Sexta', 'Sexta'], ['Sábado', 'Sábado'], ['Domingo', 'Domingo']], { include_blank: 'Selecione um dia' } %>
+          </div>
+
+          <div class="field">
+            <%= f.label :hour, 'Horário' %><br/>
+            <%= f.time_field :hour %>
+          </div>
+
+          <div class="field">
+            <%= f.label :team, 'Categoria' %><br/>
+            <%= f.select :team, [['Base', 'Base'], ['Masculino', 'Masculino'],['Feminino', 'Feminino'], ['Escolinha', 'Escolinha']], { include_blank: 'Selecione um dia' } %>
+          </div>
+
+          </div>
+          <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+            <%= f.submit('Criar', class: 'btn btn-lg btn-primary') %>
+          </div>
+        <% end %>
+        </div>
+  </div>
+</div>
+
+<!--<div id="myModal" class="modal">-->
+<!--  <div class="modal-content">-->
+<!--    <span class="close">&times;</span>-->
+<!--    <p>Conteúdo da modal aqui.</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+</body>
+</html>
+
+<script>
+    // Quando o botão ou a ação para abrir a modal for acionado
+    document.getElementById('newModalId').addEventListener('click', function () {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'block';
+    });
+
+    // Para fechar a modal quando o botão "X" for clicado
+    document.querySelector('.close').addEventListener('click', function () {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'none';
+    });
+
+    // Para fechar a modal quando a sobreposição escura for clicada
+    document.getElementById('myModal').addEventListener('click', function (event) {
+        if (event.target === this) {
+            this.style.display = 'none';
+        }
+    });
+
+</script>
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .close {
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #f2f2f2;
+        border: 1px solid #e0e0e0;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #0074e4;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #d4d4d4;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        max-height: 100px;
+        white-space: pre-line;
+    }
+</style>

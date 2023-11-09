@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="br" class="h-100" data-bs-theme="auto">
+
+<body class="d-flex h-100 text-center text-bg-primary">
+
+
+
+<div class="cover-container d-flex w-200 h-100 p-3 mx-auto flex-column">
+  <main class="px-3" style="margin-top: 150px;">
+    <h1>Bem vindo Atleta ADVC!</h1>
+    <p class="lead">"Em quadra, somos a sinfonia da força e da técnica, a dança da determinação e da superação.
+      No voleibol, somos campeões da vida!"</p>
+    <p class="lead">
+      <a href="home/events" class="btn btn-lg btn-light fw-bold border-white bg-white">Eventos</a>
+    </p>
+    <% if current_user.admin? %>
+      <p class="lead">
+        <a href="users/users_manager" class="btn btn-lg btn-light fw-bold border-white bg-white">Gerenciar Usuários</a>
+      </p>
+    <% end %>
+  </main>
+</div>
+</body>
+</html>
+
+
+
