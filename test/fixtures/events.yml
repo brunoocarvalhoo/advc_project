@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  week_date: 2023-11-05
+  hour: MyString
+
+two:
+  title: MyString
+  description: MyString
+  week_date: 2023-11-05
+  hour: MyString
