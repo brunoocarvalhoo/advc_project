@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   get 'users/users_manager', to: 'users#users_manager', as: 'users_manager'
   get 'users/delete_user', to: 'users#delete_user', as: 'delete_user'
   patch 'users/update_user', to: 'users#update_user', as: 'update_user'
+  post 'home/events', to: 'home#new_events', as: 'new_event'
 end
