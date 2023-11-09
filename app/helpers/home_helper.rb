@@ -1,0 +1,2 @@
+ga module HomeHelper
+end
